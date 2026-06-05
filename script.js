@@ -104,8 +104,8 @@ function calc() {
   const jP = Math.round(j / 40 * 100);
 
   // 三分法：根据百分比判断等级
-  // < 30% -> 1 (低), 30%-70% -> 2 (中), > 70% -> 3 (高)
-  const getLevel = (p) => p < 30 ? 1 : (p <= 70 ? 2 : 3);
+  // < 38% -> 1 (低), 38%-62% -> 2 (中), > 62% -> 3 (高)
+  const getLevel = (p) => p < 38 ? 1 : (p <= 62 ? 2 : 3);
 
   const eL = getLevel(eP);
   const sL = getLevel(sP);
@@ -188,4 +188,13 @@ if (document.getElementById('catName')) {
 function copy() {
   navigator.clipboard.writeText(document.getElementById('shareText').innerText);
   alert("已复制！");
+}
+
+function clearRank() {
+  if (confirm("确定要清空排行榜吗？此操作不可恢复。")) {
+    localStorage.removeItem('rank');
+    localStorage.removeItem('result');
+    alert("排行榜已清空！");
+    location.reload();
+  }
 }
